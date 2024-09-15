@@ -4,7 +4,7 @@ import {
   // deleteUser,
   // findUser,
   // listUser,
-  // signIn,
+  signIn,
   // updateUser,
 } from "../controllers/userController.js";
 import createUserValidate from "../middlewares/userSchemaMiddleware.js";
@@ -21,6 +21,6 @@ const userRoutes = new Router();
 
 // userRoutes.put("/:user_id", updateUser);
 
-// userRoutes.post("/sign-in", signIn);
+userRoutes.post("/sign-in", signIn);
 
 export default userRoutes;
