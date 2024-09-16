@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
-  // createUser,
-  // deleteUser,
+  createUser,
+  deleteUser,
   // findUser,
   // listUser,
   signIn,
@@ -11,11 +11,11 @@ import createUserValidate from "../middlewares/userSchemaMiddleware.js";
 
 const userRoutes = new Router();
 
-// userRoutes.post("/", createUserValidate, createUser);
+userRoutes.post("/", createUserValidate, createUser);
 
 // userRoutes.get("/", listUser);
 
-// userRoutes.delete("/:user_id", deleteUser);
+userRoutes.delete("/:id", deleteUser);
 
 // userRoutes.get("/:user_id", findUser);
 
@@ -23,4 +23,4 @@ const userRoutes = new Router();
 
 userRoutes.post("/sign-in", signIn);
 
-export default userRoutes;
+export default userRoutes;
