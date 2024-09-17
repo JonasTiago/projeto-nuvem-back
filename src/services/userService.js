@@ -19,13 +19,28 @@ async function signIn({ email, password }) {
   });
 }
 
+async function create({ name, email, password }) {
+  const newUser = await prisma.user.create({
+    data:{
+      name: name,
+      email:email,
+      password:password,
+    }});
+  return newUser
+}
 
+async function remove({ id }) {
+  const user = await prisma.user.findFirst({ where: { id } });
+  if (!user) throw { message: "User not the found!", code: 404 };
+
+  return prisma.user.delete({where: {id}});
+}
 
 
 export const userService = {
-  // create,
+  create,
   // findAll,
-  // remove,
+  remove,
   // find,
   // update,
   signIn,
