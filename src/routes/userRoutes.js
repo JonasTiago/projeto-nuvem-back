@@ -13,7 +13,7 @@ const userRoutes = new Router();
 
 userRoutes.post("/", createUserValidate, createUser);
 
-// userRoutes.get("/", listUser);
+userRoutes.get("/", listUser);
 
 userRoutes.delete("/:id", deleteUser);
 

@@ -1,5 +1,13 @@
 import { userService } from "../services/userService.js";
 
+async function listUser(req, res) {
+  try {
+    const users = await userService.findAll();
+    res.status(200).send(users);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}
 
 async function signIn(req, res) {
   const { password, email } = req.body;

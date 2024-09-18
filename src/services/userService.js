@@ -2,6 +2,9 @@ import { prisma } from "../data/db.js";
 import bcrypt from "bcrypt";
 import { Error } from "mongoose";
 
+async function findAll() {
+  return await userCollection.find({}).project({ password: 0 }).toArray();
+}
 
 async function signIn({ email, password }) {
   const user = await prisma.user.findFirst({ where: { email } });
