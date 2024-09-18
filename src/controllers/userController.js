@@ -35,3 +35,16 @@ async function deleteUser(req, res) {
 }
 
 export { signIn, createUser, deleteUser };
+
+
+async function updateUser(req, res) {
+  const { user_id } = req.params;
+  const { name, email } = req.body;
+
+  try {
+    const user = await userService.update(user_id, name, email);
+    res.status(200).send(user);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+}

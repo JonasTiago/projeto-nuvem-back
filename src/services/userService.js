@@ -45,3 +45,22 @@ export const userService = {
   // update,
   signIn,
 };
+
+async function update(id, name, email) {
+
+  const userId = ObjectId.createFromHexString(id);
+
+  const user = await userCollection.findOne({ _id: userId });
+  if (!user) throw { message: "User not found!", code: 404 };
+ 
+  if(email){
+    const emailexit = await userCollection.findOne({ email })
+    if(emailexit) throw { message: "Email já usado!", code: 409 };
+  } else {
+    email = user.email 
+  } 
+
+  if(!name) name = user.name 
+
+  return await userCollection.updateOne({ _id: userId }, { $set: { name, email } });
+}
