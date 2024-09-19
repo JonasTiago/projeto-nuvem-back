@@ -2,10 +2,10 @@ import { Router } from "express";
 import {
   createUser,
   deleteUser,
-  // findUser,
-  // listUser,
+  findUser,
+  listUser,
   signIn,
-  // updateUser,
+  updateUser,
 } from "../controllers/userController.js";
 import createUserValidate from "../middlewares/userSchemaMiddleware.js";
 
@@ -17,9 +17,9 @@ userRoutes.get("/", listUser);
 
 userRoutes.delete("/:id", deleteUser);
 
-// userRoutes.get("/:user_id", findUser);
+userRoutes.get("/:user_id", findUser);
 
-// userRoutes.put("/:user_id", updateUser);
+userRoutes.put("/:user_id", updateUser);
 
 userRoutes.post("/sign-in", signIn);
 

@@ -55,4 +55,15 @@ async function updateUser(req, res) {
   } catch (err) {
     res.status(500).send(err);
   }
-}
+
+  async function findUser(req, res) {
+    const { user_id } = req.params;
+  
+    try {
+      const user = await userService.find(user_id);
+      res.status(200).send(user);
+    } catch (err) {
+      if (err.code === 404) return res.status(err.code).send(err.message);
+      res.status(500).send(err.message);
+    }
+  }}

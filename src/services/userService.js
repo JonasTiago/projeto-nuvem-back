@@ -67,3 +67,14 @@ async function update(id, name, email) {
 
   return await userCollection.updateOne({ _id: userId }, { $set: { name, email } });
 }
+
+async function find(id) {
+  const userId = ObjectId.createFromHexString(id);
+
+  const user = await userCollection.findOne({ _id: userId });
+  if (!user) throw { message: "User not found!", code: 404 };
+
+  return Object.defineProperty(user, "password", {
+    enumerable: false,
+  });
+}
